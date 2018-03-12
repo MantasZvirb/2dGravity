@@ -1,5 +1,6 @@
 import math
 Konst = 1000000
+AsiesRiba = 400
 DaleliuMasyvas = []
 
 class Dalele():
@@ -30,14 +31,19 @@ def LaikoEjimas(LaikoTarpas):
 				JegaY = (AtstumasY/Atstumas)*Jega
 				GreitisX = (JegaX/Dalele1.mase)*LaikoTarpas
 				GreitisY = (JegaY/Dalele1.mase)*LaikoTarpas
-				
-				NaujaX = (Dalele1.x + (Dalele1.gx+GreitisX*LaikoTarpas))
-				NaujaY = (Dalele1.y + (Dalele1.gy+GreitisY*LaikoTarpas))
 
 				Dalele1.gx+=GreitisX
 				Dalele1.gy+=GreitisY
 
 	for Dalele1 in DaleliuMasyvas:
+		NaujaX = Dalele1.x+Dalele1.gx*LaikoTarpas
+		NaujaY = Dalele1.y+Dalele1.gy*LaikoTarpas
+		
+		if((NaujaX < 0) or (NaujaX > AsiesRiba)):
+			Dalele1.gx = Dalele1.gx*-1
+		if((NaujaY < 0) or (NaujaY > AsiesRiba)):
+			Dalele1.gy = Dalele1.gy*-1
+
 		Dalele1.x+= Dalele1.gx*LaikoTarpas
 		Dalele1.y+= Dalele1.gy*LaikoTarpas
 			
